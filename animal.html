@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Animal Game</title>
-    </head>
+<head>
+    <title>Animal Game</title>
+</head>
+ 
 <body>
-    <h1> Animal Game by Rishil</h1>
+<h1>Animal game by Julai Dangol</h1>
+
 <h2>Getting input</h2>
+
 <form>
-    <label for="hiddenAnimal">The hidden animal type</label>
-    <input type="password" id="hiddenAnimal" value="Chicken"><br>
+    <label for="form1_animal">The hidden animal type </label>
+    <input type ="password"  value="Chicken" id="form1_animal" name="form1_animal" min=10 max=50 step=2 value=30> <br>
 
-    <label for="guessAnimal">Guess the animal</label>
-    <input type="text" id="guessAnimal"><br>
+    <label for="form1_guess"> Guess the animal</label>
+    <input type ="text" id="form1_guess" name="form1_guess" autofocus> <br>
 
-    <button type="button" onclick="checkAnimal()">Check the guess</button>
+    <input type="button" onclick="checkAnimal()" value="Check the guess">
 </form>
 
 
-<p id="result">This text will be replaced </p>
+<p id="correctResult">This text will be replaced </p>
+<p id="wrongResult">This text will be replaced </p>
+
+
 
 <script> 
-    let wrong=0;
-    let correct=0;
-    function checkanimal() {
-        const hiddenAnimal = document.getElementById("hiddenAnimal").value;
-        const guessAnimal = document.getElementById("guessAnimal").value;
+    var wrong = 0;
+    var correct = 0;
+    function checkAnimal (){
+    
+        console.log("Getting form values")
+        animal = document.getElementById("form1_animal").value
+        guess = document.getElementById("form1_guess").value
+        confirmed = confirm("Are these the values? "+animal+" and "+guess)
+        
+        correctResult = document.getElementById("correctResult")
+        wrongResult = document.getElementById("wrongResult")
 
-    if (hiddenAnimal === guessAnimal) {
-      correct++;
-      alert("Ruff ruff");
-    } else {
-      wrong++;
-      alert("Grrrr");
+        if(animal.toUpperCase() == guess.toUpperCase()){
+            correct += 1
+            alert('Ruff ruff')
+            correctResult.innerHTML = `Correct count: ${correct}`
+        } else {
+            wrong += 1
+            alert('Grrrr')
+            wrongResult.innerHTML = `Wrong Count: ${wrong}`
+        }
     }
-
-    document.getElementById("results").innerHTML = `Correct: ${correct}, Wrong: ${wrong}`;
-}
 </script>
 
 </body>
