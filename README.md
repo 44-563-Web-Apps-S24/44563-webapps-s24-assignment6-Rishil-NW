@@ -2,7 +2,7 @@
 # WebApps-S24-Assignment-6
 Introduction to Java Script and DOM
 
-Hosted At :"https://44-563-web-apps-s24.github.io/44563-webapps-s24-assignment6-Rishil-NW/"
+Hosted At :https://github.com/44-563-Web-Apps-S24/44563-webapps-s24-assignment6-Rishil-NW?tab=readme-ov-file
 
 animal: https://44-563-web-apps-s24.github.io/44563-webapps-s24-assignment6-Rishil-NW/animal.html
 
