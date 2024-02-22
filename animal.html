@@ -1,54 +1,101 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Animals Game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
 </head>
- 
+
 <body>
-<h1>Animal Game by Rishil</h1>
+    <div class="container">
 
-<h2>Getting Input</h2>
+        <h1>Animal game by Rishil</h1>
 
-<form>
-    <label for="form1_animal">The hidden animal type </label>
-    <input type ="password"  value="Chicken" id="form1_animal" name="form1_animal" min=10 max=50 step=2 value=30> <br>
+        <h2>Getting input</h2>
 
-    <label for="form1_guess"> Guess the animal</label>
-    <input type ="text" id="form1_guess" name="form1_guess" autofocus> <br>
+        <form>
+            <label for="form1_animal">The hidden animal type </label>
+            <input type="password" value="Chicken" id="form1_animal" name="form1_animal" min=10 max=50 step=2 value=30>
+            <br>
 
-    <input type="button" onclick="checkAnimal()" value="Check the guess">
-</form>
+            <label for="form1_guess"> Guess the animal</label>
+            <input type="text" id="form1_guess" name="form1_guess" autofocus> <br>
 
+            <input type="button" class="btn btn-primary" id="checkButton" onclick="checkAnimal()" value="Check the guess">
+        </form>
 
-<p id="correctResult">This text will be replaced </p>
-<p id="wrongResult">This text will be replaced </p>
+        <div id="correctResult" class="col-md-6 alert alert-success" role="alert">This text will be replaced </div>
+        <div id="wrongResult" class="col-md-6 alert alert-danger" role="alert">This text will be replaced </div>
 
+        <div class="container">
+            <img src="Dr_pepper.jpg" id="image" alt="Dr_pepper" width="150" height="150" onclick="selectImage()">
+        </div>
 
+    </div>
+    <script>
+        var wrong = 0;
+        var correct = 0;
+        var useImage = 1;
 
-<script> 
-    var wrong = 0;
-    var correct = 0;
-    function checkAnimal (){
-    
-        console.log("Getting form values")
-        animal = document.getElementById("form1_animal").value
-        guess = document.getElementById("form1_guess").value
-        confirmed = confirm("Are these the values? "+animal+" and "+guess)
-        
-        correctResult = document.getElementById("correctResult")
-        wrongResult = document.getElementById("wrongResult")
+        function selectImage() {
+            var img = document.getElementById("image")
+            switch (useImage) {
+                case 1:
+                    img.src = "Dr_pepper.jpg";
+                    useImage = 2;
+                    break;
+                case 2:
+                    img.src = "old_monk.png";
+                    useImage = 3;
+                    break;
+                default:
+                    useImage = 1;
+                    img.src = "orange"
 
-        if(animal.toUpperCase() == guess.toUpperCase()){
-            correct += 1
-            alert('Ruff ruff')
-            correctResult.innerHTML = `Correct count: ${correct}`
-        } else {
-            wrong += 1
-            alert('Grrrr')
-            wrongResult.innerHTML = `Wrong Count: ${wrong}`
+            }
+
         }
-    }
-</script>
+
+        function checkAnimal() {
+
+            console.log("Getting form values")
+            animal = document.getElementById("form1_animal").value
+            guess = document.getElementById("form1_guess").value
+            confirmed = confirm("Are these the values? " + animal + " and " + guess)
+
+            correctResult = document.getElementById("correctResult")
+            wrongResult = document.getElementById("wrongResult")
+
+            if (animal.toUpperCase() == guess.toUpperCase()) {
+                correct += 1
+                alert('Ruff ruff')
+                correctResult.innerHTML = `Correct count: ${correct}`
+            } else {
+                wrong += 1
+                if (wrong > correct) {
+                    alert("Sorry, too many wrong guesses.");
+                    document.getElementById("checkButton").onclick = function () {
+                        alert("Sorry, too many wrong guesses.")
+                    };
+                }
+                else {
+                    alert('Grrrr')
+                    wrongResult.innerHTML = `Wrong Count: ${wrong}`
+                }
+            }
+        }
+    </script>
 
 </body>
-</html> 
+
+</html>
